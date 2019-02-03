@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    This is my friends
+{% endblock %}
+{% block content %}
+    {% for post in posts %}
+        {% include 'blog/includes/post_card_template.html' %}
+    {% endfor %}
+{% endblock %}

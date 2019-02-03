@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Tag list - {{ block.super }}{% endblock %}
+
+{% block content %}
+<ul>
+{% for tag in tags %}
+    <li><a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
