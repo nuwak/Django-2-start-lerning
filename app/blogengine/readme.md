@@ -1,0 +1,1 @@
+[7. Уроки Django 2 - Работа с формами Form, ModelForm, валидация данных (2018)](https://youtu.be/oNhNzH8FCIM?t=2)
