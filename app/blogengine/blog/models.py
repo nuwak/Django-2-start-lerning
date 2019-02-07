@@ -24,4 +24,4 @@ class Tag(models.Model):
         return reverse('blog_tag_detail', kwargs={'slug': self.slug})
 
     def __str__(self):
-        return self.title
+        return self.title.format()

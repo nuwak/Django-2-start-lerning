@@ -1,17 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.views.generic import View
-from .models import *
-from .utils import ObjectDetailMixin
+from .utils import *
+from .forms import *
 
 
-def posts_list(request):
-    posts = Post.objects.all()
-    return render(request, 'blog/post_list.html', context={'posts': posts})
+class PostList(ObjectListMixin, View):
+    model = Post
 
 
-def tag_list(request):
-    tags = Tag.objects.all()
-    return render(request, 'blog/tag_list.html', context={'tags': tags})
+class TagList(ObjectListMixin, View):
+    model = Tag
 
 
 class PostDetail(ObjectDetailMixin, View):
@@ -23,3 +21,18 @@ class TagDetail(ObjectDetailMixin, View):
     model = Tag
     template = 'blog/tag_detail.html'
 
+
+class TagCreate(View):
+    def get(self, request):
+        form = TagForm
+        return render(request, 'blog/tag_create.html', {'form': form})
+
+    def post(self, request):
+        bound_form = TagForm(request.POST)
+
+        try:
+            new_tag = bound_form.save()
+        except ValueError:
+            return render(request, 'blog/tag_create.html', {'form': bound_form})
+
+        return redirect(new_tag)

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django.db import models
+from django.db.models import Model
 
 
 class ObjectDetailMixin:
@@ -13,8 +13,9 @@ class ObjectDetailMixin:
 
 
 class ObjectListMixin:
-    model: models.Model = None
+    model: Model = None
 
-    def tag_list(self, request):
-        tags = self.model.objects.all()
-        return render(request, 'blog/tag_list.html', context={'tags': tags})
+    def get(self, request):
+        model_name = self.model.__name__.lower()
+        items = self.model.objects.all()
+        return render(request, 'blog/{}_list.html'.format(model_name), {'items': items})

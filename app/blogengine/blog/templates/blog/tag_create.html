@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  Tag Create - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+  <form action="{% url 'blog_tag_create' %}" method="post" class="needs-validation" was-validated>
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-group">
+        {{ field.label }}
+        {{ field }}
+        {% if field.errors %}
+          <div style="color:red; font-size: 0.8em">
+            {{ field.errors.as_text }}
+          </div>
+        {% endif %}
+
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Create Tag</button>
+  </form>
+{% endblock %}
