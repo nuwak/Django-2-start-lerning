@@ -17,6 +17,9 @@ class Post(models.Model):
     def get_update_url(self):
         return reverse('blog_post_update', kwargs={'slug': self.slug})
 
+    def get_delete_url(self):
+        return reverse('blog_post_delete', kwargs={'slug': self.slug})
+
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = gen_slug(self.slug)
@@ -40,6 +43,9 @@ class Tag(models.Model):
 
     def get_update_url(self):
         return reverse('blog_tag_update', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('blog_tag_delete', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title

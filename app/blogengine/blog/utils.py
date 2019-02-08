@@ -3,6 +3,7 @@ from time import time
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.db.models import Model
+from django.urls import reverse
 from django.utils.text import slugify
 from django.forms import ModelForm
 
@@ -43,7 +44,7 @@ class ObjectCreateMixin:
 
 
 class ObjectUpdateMixin:
-    Form = ModelForm
+    Form = None
     template: str = None
     model: Model = None
 
@@ -67,3 +68,20 @@ class ObjectUpdateMixin:
 def gen_slug(s: str) -> str:
     new_slug = slugify(s, allow_unicode=True)
     return new_slug + '-' + str(int(time() * 10000))
+
+
+class ObjectDeleteMixin:
+    template: str = None
+    model: Model = None
+    redirect: str = None
+
+    def get(self, request, slug):
+        model = get_object_or_404(self.model, slug__iexact=slug)
+
+        return render(request, self.template, {'model': model})
+
+    def post(self, request, slug):
+        get_object_or_404(self.model, slug__iexact=slug).delete()
+
+        return redirect(reverse(self.redirect))
+

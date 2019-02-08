@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
-{% block title %}tag.title - {{ block.super }}{% endblock %}
+{% spaceless %}
+  {% block title %}tag.title - {{ block.super }}{% endblock %}
+{% endspaceless %}
 
 {% block content %}
     <h1 class="mt-5">Tag: {{ tag.title | title }}</h1>
