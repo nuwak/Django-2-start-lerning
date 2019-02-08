@@ -1,63 +1,65 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  {% spaceless %}
-    <title>
-      {% block title %}
-        Blog
-      {% endblock %}
-    </title>
-  {% endspaceless %}
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+  <title>{% block title %} Blog{% endblock %}</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'blog_posts_list' %}">Posts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'blog_tag_list' %}">Tags</a>
-            </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog_post_create' %}">Create Post</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog_tag_create' %}">Create Tag</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog_posts_list' %}">Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog_tag_list' %}">Tags</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog_post_create' %}">Create Post</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog_tag_create' %}">Create Tag</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
 </nav>
 
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-md-12">
-        <h1 class="mb-5">Posts</h1>
-            {% block content %}
-                <h4>content</h4>
-            {% endblock %}
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="mb-5">Posts</h1>
+      {% block content %}
+        <h4>content</h4>
+      {% endblock %}
     </div>
+  </div>
 
+</div>
+
+<div class="admin-panel align-items-center">
+  <a href="/admin" class="btn btn-warning">Admin</a>
+  {% block admin-panel %}{% endblock %}
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

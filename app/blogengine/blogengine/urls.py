@@ -19,6 +19,6 @@ from .views import hello
 from django.urls import include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin_panel'),
     path('blog/', include('blog.urls')),
 ]
