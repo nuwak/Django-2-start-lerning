@@ -1,7 +1,20 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.views.generic import View
 from .utils import *
 from .forms import *
+
+
+def post_list(request):
+    model_name = 'post'
+    search_query = request.GET.get('search')
+
+    if search_query:
+        items = Post.objects.filter(Q(title__icontains=search_query) | Q(body__icontains=search_query))
+    else:
+        items = Post.objects.all()
+
+    return render(request, f'blog/{model_name}_list.html', {'items': items, 'search_query': search_query})
 
 
 class PostList(ObjectListMixin, View):
