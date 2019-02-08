@@ -57,10 +57,12 @@
 
 </div>
 
+{% if request.user.is_authenticated and request.user.is_staff %}
 <div class="admin-panel align-items-center">
   <a href="/admin" class="btn btn-warning">Admin</a>
   {% block admin-panel %}{% endblock %}
 </div>
+{% endif %}
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
