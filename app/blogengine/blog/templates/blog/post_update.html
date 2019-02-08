@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <form action="{% url 'blog_post_update' slug=model.slug %}" method="post">
+  <form action="{{ model.blog_post_update }}" method="post">
     {% include 'blog/includes/_form.html' %}
     <button type="submit" class="btn btn-primary">Update Post</button>
   </form>

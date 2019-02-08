@@ -14,6 +14,9 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog_post_detail', kwargs={'slug': self.slug})
 
+    def get_update_url(self):
+        return reverse('blog_post_update', kwargs={'slug': self.slug})
+
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = gen_slug(self.slug)
@@ -35,5 +38,8 @@ class Tag(models.Model):
     def get_absolute_url(self):
         return reverse('blog_tag_detail', kwargs={'slug': self.slug})
 
+    def get_update_url(self):
+        return reverse('blog_tag_update', kwargs={'slug': self.slug})
+
     def __str__(self):
-        return self.title.format()
+        return self.title
