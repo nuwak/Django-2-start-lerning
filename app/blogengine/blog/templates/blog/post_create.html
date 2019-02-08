@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Create Post - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+  <form action="{% url 'blog_post_create' %}" method="post">
+    {% include 'blog/includes/_form.html' %}
+    <button type="submit" class="btn btn-primary">Create Tag</button>
+  </form>
+{% endblock %}

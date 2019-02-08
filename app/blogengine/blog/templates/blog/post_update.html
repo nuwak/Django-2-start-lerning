@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Update Post - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+  <form action="{% url 'blog_post_update' slug=model.slug %}" method="post">
+    {% include 'blog/includes/_form.html' %}
+    <button type="submit" class="btn btn-primary">Update Post</button>
+  </form>
+{% endblock %}

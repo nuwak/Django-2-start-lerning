@@ -1,4 +1,3 @@
-from django.shortcuts import redirect
 from django.views.generic import View
 from .utils import *
 from .forms import *
@@ -22,17 +21,24 @@ class TagDetail(ObjectDetailMixin, View):
     template = 'blog/tag_detail.html'
 
 
-class TagCreate(View):
-    def get(self, request):
-        form = TagForm
-        return render(request, 'blog/tag_create.html', {'form': form})
+class TagCreate(ObjectCreateMixin, View):
+    Form = TagForm
+    template = 'blog/tag_create.html'
 
-    def post(self, request):
-        bound_form = TagForm(request.POST)
 
-        try:
-            new_tag = bound_form.save()
-        except ValueError:
-            return render(request, 'blog/tag_create.html', {'form': bound_form})
+class TagUpdate(ObjectUpdateMixin, View):
+    Form = TagForm
+    template = 'blog/tag_update.html'
+    model = Tag
 
-        return redirect(new_tag)
+
+class PostCreate(ObjectCreateMixin, View):
+    Form = PostForm
+    template = 'blog/post_create.html'
+
+
+class PostUpdate(ObjectUpdateMixin, View):
+    Form = PostForm
+    template = 'blog/post_update.html'
+    model = Post
+

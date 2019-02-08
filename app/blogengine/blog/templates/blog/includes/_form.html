@@ -1,0 +1,12 @@
+{% csrf_token %}
+{% for field in form %}
+  <div class="form-group">
+    {{ field.label }}
+    {{ field }}
+    {% if field.errors %}
+      <div style="color:red; font-size: 0.8em">
+        {{ field.errors.as_text }}
+      </div>
+    {% endif %}
+  </div>
+{% endfor %}
