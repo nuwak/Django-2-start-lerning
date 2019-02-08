@@ -7,7 +7,7 @@ from .forms import *
 
 def post_list(request):
     model_name = 'post'
-    search_query = request.GET.get('search')
+    search_query = request.GET.get('search', '')
 
     if search_query:
         items = Post.objects.filter(Q(title__icontains=search_query) | Q(body__icontains=search_query))
