@@ -88,7 +88,7 @@ import datetime
 from django.contrib.auth.decorators import permission_required
 
 # from .forms import RenewBookForm
-from catalog.forms import RenewBookForm
+from .forms import RenewBookForm
 
 
 @permission_required('catalog.can_mark_returned')
